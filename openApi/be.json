@@ -1,0 +1,136 @@
+{
+  "openapi": "3.1.0",
+  "info": { "title": "FastAPI", "version": "0.1.0" },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Root",
+        "operationId": "root__get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": { "application/json": { "schema": {} } }
+          }
+        }
+      }
+    },
+    "/create_bin_question": {
+      "post": {
+        "summary": "Create Binary Question",
+        "operationId": "create_binary_question_create_bin_question_post",
+        "parameters": [
+          {
+            "name": "difficulty",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "integer", "title": "Difficulty" }
+          },
+          {
+            "name": "desc",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string", "title": "Desc" }
+          },
+          {
+            "name": "choice_1",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string", "title": "Choice 1" }
+          },
+          {
+            "name": "choice_2",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string", "title": "Choice 2" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": { "application/json": { "schema": {} } }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/get_bin_question": {
+      "get": {
+        "summary": "Get Bin Question",
+        "operationId": "get_bin_question_get_bin_question_get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "integer", "title": "Id" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/BinaryQuestion" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BinaryQuestion": {
+        "properties": {
+          "difficulty": { "type": "integer", "title": "Difficulty" },
+          "desc": { "type": "string", "title": "Desc" },
+          "choice_1": { "type": "string", "title": "Choice 1" },
+          "choice_2": { "type": "string", "title": "Choice 2" }
+        },
+        "type": "object",
+        "required": ["difficulty", "desc", "choice_1", "choice_2"],
+        "title": "BinaryQuestion"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": { "$ref": "#/components/schemas/ValidationError" },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": { "anyOf": [{ "type": "string" }, { "type": "integer" }] },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": { "type": "string", "title": "Message" },
+          "type": { "type": "string", "title": "Error Type" }
+        },
+        "type": "object",
+        "required": ["loc", "msg", "type"],
+        "title": "ValidationError"
+      }
+    }
+  }
+}
