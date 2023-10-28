@@ -1,13 +1,14 @@
 import React from 'react';
 import logo from './logo.svg';
+import baselhack from './assests/images/logohack.png';
 import './App.css';
 
 const App: React.FunctionComponent = () => {
   return (
     <body>
       <header className="bg-neutral">
-        <img src={logo} alt="Logo HackBasel" className="App-logo" />
-        <h1> Certifever help</h1>
+        <img src={baselhack} alt="Logo HackBasel" className="App-logo" />
+        <div className="title"> Certifever help </div>
       </header>
 
       <div className="bg-white my-5 w-full flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
