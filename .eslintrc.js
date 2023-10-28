@@ -9,8 +9,7 @@ module.exports = {
     'eslint:recommended', // Use the recommened rules from eslint
     'plugin:@typescript-eslint/recommended', // Use the recommended rules from @typescript-eslint/eslint-plugin
     'plugin:react/recommended', // Use the recommended rules from eslint-plugin-react
-    'prettier/@typescript-eslint',
-    'prettier/react',
+    'prettier',
     'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser', // Specifies the ESLint parser
@@ -23,7 +22,7 @@ module.exports = {
   },
   plugins: [
     '@typescript-eslint', // Allows for manually setting @typescript-eslint/* rules
-    "prettier",
+    'prettier',
     'react', // Allows for manually setting react/* rules
   ],
   settings: {
