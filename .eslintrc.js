@@ -9,7 +9,7 @@ module.exports = {
     'eslint:recommended', // Use the recommened rules from eslint
     'plugin:@typescript-eslint/recommended', // Use the recommended rules from @typescript-eslint/eslint-plugin
     'plugin:react/recommended', // Use the recommended rules from eslint-plugin-react
-    'plugin:prettier/recommended',
+    'prettier',
   ],
   parser: '@typescript-eslint/parser', // Specifies the ESLint parser
   parserOptions: {
@@ -21,11 +21,15 @@ module.exports = {
   },
   plugins: [
     '@typescript-eslint', // Allows for manually setting @typescript-eslint/* rules
+    'prettier',
     'react', // Allows for manually setting react/* rules
   ],
   settings: {
     react: {
       version: 'detect', // Tells eslint-plugin-react to automatically detect the version of React to use
     },
+  },
+  compilerOptions: {
+    target: 'es2021',
   },
 };
