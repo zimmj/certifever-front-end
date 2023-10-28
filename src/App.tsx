@@ -21,6 +21,6 @@ const App: React.FunctionComponent = () => {
       </header>
     </div>
   );
-}
+};
 
 export default App;
