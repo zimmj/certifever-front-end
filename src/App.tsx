@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import baselhack from './assests/images/logohack.png';
-import certifever from './assests/images/certifever.svg';
+import './App.css';
 import Language from './components/Language';
 import Difficulty from './components/Difficulty';
 import Questions from './components/Questions';
@@ -58,7 +58,8 @@ const App: React.FunctionComponent = () => {
           <h2>Uploading...</h2>
         </div>
       )}
-  
+    </div>
+      <div className="bg-white my-5 w-full flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
         <main className=" md:w-2/3 lg:w-3/4 px-5 py-40">
           <h1 className="text-2xl md:text-4xl">Welcome to Certifever</h1>
           <p>
