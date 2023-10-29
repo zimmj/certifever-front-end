@@ -22,6 +22,13 @@ export const createQuestion = (pdf: File | null, userQuery: UserQuery): Observab
       correct_answer_id: 0,
       explanation: 'New Delhi is the capital of India',
       topic: 'Geography',
+    },
+    {
+      question: 'What is the capital of Australia?',
+      options: ['Sydney', 'Melbourne', 'Canberra', 'Perth'],
+      correct_answer_id: 2,
+      explanation: 'Canberra is the capital of Australia',
+      topic: 'Geography',
     }
   ])
   return mock.asObservable();

@@ -6,6 +6,7 @@ import './App.css';
 import Language from './components/Language';
 import Difficulty from './components/Difficulty';
 import Questions from './components/Questions';
+import { QuizzMaster } from './component/quizz-master';
 
 
 const App: React.FunctionComponent = () => {
@@ -36,13 +37,13 @@ const App: React.FunctionComponent = () => {
   return (
 <body data-theme="cmyk" className="mx-20  ">
       <header className="bg-neutral flex justify-between w-full h-32 p-2">
-      
+
       <div className=''>
         <a className="link link-hover" href="./">
            <img src={certifever} alt="Logo Certifever" className='h-full' />
         </a>
       </div>
-        
+
         <div className='uppercase font-bolid text-white align-middle text-3xl place-self-center w-full'>
            Certifever  for ever
         </div>
@@ -50,27 +51,15 @@ const App: React.FunctionComponent = () => {
           <a className="link link-hover" href="https://www.baselhack.ch/" target="_blank" rel="noreferrer">
             <img src={baselhack} alt="HackBasel" className="h-full float-right " />
           </a>
-        </div>  
-        
+        </div>
+
       </header>
       <div className="bg-slate-200 w-full flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
-      
-    
-        <main className=" md:w-2/3 lg:w-3/4 px-5 py-40">
-          <p>
 
-          {!selectedLanguage ? (
-        <Language onSelectLanguage={handleLanguageSelect} />
-      ) : !selectedDifficulty ? (
-        <Difficulty onSelectDifficulty={handleDifficultySelect} />
-      ) : apiUrl ? (
-        <Questions apiUrl={apiUrl} />
-      ) : (
-        <div>
-          <h2>Uploading...</h2>
-        </div>
-      )}
-          </p>
+
+        <main className=" md:w-2/3 lg:w-3/4 px-5 py-40">
+          <QuizzMaster></QuizzMaster>
+
         </main>
       </div>
 

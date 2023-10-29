@@ -26,14 +26,14 @@ export const UserForm: React.FunctionComponent<UserFormProps> = ({onFormSubmit})
     event.preventDefault();
     const target = event.target as typeof event.target & {
       Profile: {value: string};
-      intenstion: {value: string};
+      intent: {value: string};
       topics: {value: string};
       pdf_file: {files: File[]};
     };
 
     const userQuery: UserQuery = {
       profile: target.Profile.value,
-      intent: target.intenstion.value,
+      intent: target.intent.value,
       topic: target.topics.value
     };
 
@@ -58,7 +58,7 @@ export const UserForm: React.FunctionComponent<UserFormProps> = ({onFormSubmit})
         <span className="label-text">What is your intention</span>
         <span className="label-text-alt">For what do you need the questions</span>
       </label>
-      <textarea name='itention' className="textarea textarea-bordered h-24" placeholder="Itention"></textarea>
+      <textarea name='intent' className="textarea textarea-bordered h-24" placeholder="Itention"></textarea>
     </div>
 
     <div className="divider"></div>
