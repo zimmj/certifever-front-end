@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import logo from './logo.svg';
 import baselhack from './assests/images/logohack.png';
-import './App.css';
+import certifever from './assests/images/certifever.svg';
 import Language from './components/Language';
 import Difficulty from './components/Difficulty';
 import Questions from './components/Questions';
@@ -32,12 +31,22 @@ const App: React.FunctionComponent = () => {
     }
   };
   return (
-    <body>
-      <header className="bg-neutral">
-        <img src={baselhack} alt="Logo HackBasel" className="App-logo" />
-        <div className="title"> Certifever help </div>
+<body data-theme="cmyk" className="mx-20  ">
+      <header className="bg-neutral flex justify-between w-full">
+      
+      <div className=''>
+        <img src={certifever} alt="Logo Certifever" className='' />
+        </div>
+        
+        <div className='uppercase font-bolid text-white align-middle text-3xl place-self-center'>
+           Certifever  for ever
+        </div>
+        <div className=''>
+          <img src={baselhack} alt="HackBasel" className="" />
+        </div> 
+        
       </header>
-      <div className="App">
+      <div className="bg-slate-200 w-full flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
       {!selectedLanguage ? (
         <Language onSelectLanguage={handleLanguageSelect} />
       ) : !selectedDifficulty ? (
@@ -46,11 +55,10 @@ const App: React.FunctionComponent = () => {
         <Questions apiUrl={apiUrl} />
       ) : (
         <div>
-          <h1>Uploading...</h1>
+          <h2>Uploading...</h2>
         </div>
       )}
-    </div>
-      <div className="bg-white my-5 w-full flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
+  
         <main className=" md:w-2/3 lg:w-3/4 px-5 py-40">
           <h1 className="text-2xl md:text-4xl">Welcome to Certifever</h1>
           <p>
@@ -64,23 +72,23 @@ const App: React.FunctionComponent = () => {
       <footer className="footer p-10 bg-neutral text-neutral-content">
         <nav>
           <header className="footer-title">AI Prompters Team</header>
-          <a className="link link-hover">Anurag Grag</a>
-          <a className="link link-hover">Liam Hoo</a>
-          <a className="link link-hover">Martin Mraz</a>
-          <a href='/' className="link link-hover">Ibrahim Kuray</a>
+          <a className="link link-hover" href="./">Anurag Grag</a>
+          <a className="link link-hover" href="./">Liam Hoo</a>
+          <a className="link link-hover" href="./">Martin Mraz</a>
+          <a className="link link-hover" href="./">Ibrahim Kuray</a>
         </nav>
         <nav>
           <header className="footer-title">AI Prompters Team</header>
-          <a className="link link-hover">Chris Vogel</a>
-          <a className="link link-hover">David Zimmerli</a>
-          <a className="link link-hover">Joel Zimmerli</a>
+          <a className="link link-hover" href="./">Chris Vogel</a>
+          <a className="link link-hover" href="./">David Zimmerli</a>
+          <a className="link link-hover"href="./">Joel Zimmerli</a>
         </nav>
         <nav>
           <header className="footer-title">Created 2023</header>
           <a className="link link-hover" href="https://www.baselhack.ch/">
             BaselHack
           </a>
-          <a className="link link-hover">Project Idea of Roland Brand</a>
+          <a className="link link-hover" href="./">Project Idea of Roland Brand</a>
           <a
             className="link link-hover"
             href="https://github.com/zimmj/certifever-front-end"
