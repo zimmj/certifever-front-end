@@ -8,9 +8,6 @@ import { QuizzMaster } from './component/quizz-master';
 
 const App: React.FunctionComponent = () => {
  
-
-
-
   return (
 <body data-theme="cmyk" className="  ">
       <header className="bg-neutral flex justify-between w-full h-32 p-2">
