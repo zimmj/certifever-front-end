@@ -3,35 +3,12 @@ import React, {useState} from 'react';
 import baselhack from './assests/images/logohack.png';
 import certifever from './assests/images/certifever.svg';
 import './App.css';
-import Language from './components/Language';
-import Difficulty from './components/Difficulty';
-import Questions from './components/Questions';
 import { QuizzMaster } from './component/quizz-master';
 
 
 const App: React.FunctionComponent = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
-  const [selectedDifficulty, setSelectedDifficulty] = useState<string | null>(
-    null
-  );
-  const [apiUrl, setApiUrl] = useState<string | null>(null);
+ 
 
-  const handleLanguageSelect = (language: string) => {
-    setSelectedLanguage(language);
-  };
-
-  const handleDifficultySelect = (difficulty: string) => {
-    setSelectedDifficulty(difficulty);
-
-    // difficulty lvl depending on users choice
-    if (difficulty === 'Beginner') {
-      setApiUrl('http://localhost:3000/expert.json');
-    } else if (difficulty === 'Advanced') {
-      setApiUrl('http://localhost:3000/advanced.json');
-    } else if (difficulty === 'Expert') {
-      setApiUrl('https://www.api.org/sda125');
-    }
-  };
 
 
   return (
