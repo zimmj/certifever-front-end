@@ -1,16 +1,55 @@
-import React from 'react';
+import React, {useState} from 'react';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import logo from './logo.svg';
 import baselhack from './assests/images/logohack.png';
 import './App.css';
+import Language from './components/Language';
+import Difficulty from './components/Difficulty';
+import Questions from './components/Questions';
+
 
 const App: React.FunctionComponent = () => {
+  const [selectedLanguage, setSelectedLanguage] = useState<string | null>(null);
+  const [selectedDifficulty, setSelectedDifficulty] = useState<string | null>(
+    null
+  );
+  const [apiUrl, setApiUrl] = useState<string | null>(null);
+
+  const handleLanguageSelect = (language: string) => {
+    setSelectedLanguage(language);
+  };
+
+  const handleDifficultySelect = (difficulty: string) => {
+    setSelectedDifficulty(difficulty);
+
+    // difficulty lvl depending on users choice
+    if (difficulty === 'Beginner') {
+      setApiUrl('http://localhost:3000/expert.json');
+    } else if (difficulty === 'Advanced') {
+      setApiUrl('http://localhost:3000/advanced.json');
+    } else if (difficulty === 'Expert') {
+      setApiUrl('https://www.api.org/sda125');
+    }
+  };
   return (
     <body>
       <header className="bg-neutral">
         <img src={baselhack} alt="Logo HackBasel" className="App-logo" />
         <div className="title"> Certifever help </div>
       </header>
-
+      <div className="App">
+      {!selectedLanguage ? (
+        <Language onSelectLanguage={handleLanguageSelect} />
+      ) : !selectedDifficulty ? (
+        <Difficulty onSelectDifficulty={handleDifficultySelect} />
+      ) : apiUrl ? (
+        <Questions apiUrl={apiUrl} />
+      ) : (
+        <div>
+          <h1>Uploading...</h1>
+        </div>
+      )}
+    </div>
       <div className="bg-white my-5 w-full flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
         <main className=" md:w-2/3 lg:w-3/4 px-5 py-40">
           <h1 className="text-2xl md:text-4xl">Welcome to Certifever</h1>
