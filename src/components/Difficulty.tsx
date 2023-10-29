@@ -10,11 +10,11 @@ const Difficulty: React.FC<DifficultyProps> = ({ onSelectDifficulty }) => {
 
   return (
     <div>
-      <h2>Choose a difficulty level please:</h2>
-      <ul>
+      <h2 className='text-xl font-bold'>Choose a difficulty level please:</h2>
+      <ul className='space-y-2.5'>
         {difficulties.map((difficulty, index) => (
           <li key={index}>
-            <button onClick={() => onSelectDifficulty(difficulty)}>
+            <button className='btn btn-lg btn-neutral' onClick={() => onSelectDifficulty(difficulty)}>
               {difficulty}
             </button>
           </li>

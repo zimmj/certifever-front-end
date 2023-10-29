@@ -1,28 +1,41 @@
-import {DefaultService, OpenAPI} from '../gen/openapi'
-import {Observable, from, map, tap} from 'rxjs';
+import { UserQuery } from '../component/user-form';
+import {DefaultService, OpenAPI, Question} from '../gen/openapi'
+import {BehaviorSubject, Observable, from, map} from 'rxjs';
 
-const {getBinQuestionGetBinQuestionGet} = DefaultService;
+const {createQuestionsWithPdfCreateQuestionsWithPdfPost, createQuestionsWithTopicCreateQuestionsWithTopicPost} = DefaultService;
 
-export type BinaryQuestionDto = {
-    difficulty: number;
-    desc: string;
-    choice_1: string;
-    choice_2: string;
+export type QuestionDto = {
+  question: string;
+  options: string[];
+  correct_answer_id: number;
+  explanation: string;
+  topic: string;
 };
 
 OpenAPI.BASE = 'http://localhost:8000';
 
-export const getBinQuestionGetBinQuestionGetWrapper = (id: number): Observable<BinaryQuestionDto> => {
-  const cancelable = getBinQuestionGetBinQuestionGet(id);
-  return from(cancelable).pipe(
-    tap(
-      {
-        error: (err) => {
-          cancelable.cancel();
-          console.error(err);
-        }
-      }
-    ),
-    map((res) => res as BinaryQuestionDto)
-  );
+export const createQuestion = (pdf: File | null, userQuery: UserQuery): Observable<QuestionDto[]> => {
+  const mock: BehaviorSubject<QuestionDto[]> = new BehaviorSubject<QuestionDto[]>([
+    {
+      question: 'What is the capital of India?',
+      options: ['New Delhi', 'Mumbai', 'Kolkata', 'Chennai'],
+      correct_answer_id: 0,
+      explanation: 'New Delhi is the capital of India',
+      topic: 'Geography',
+    }
+  ])
+  return mock.asObservable();
+  if (pdf) {
+        return from(createQuestionsWithPdfCreateQuestionsWithPdfPost(userQuery.profile, userQuery.intent, {pdf_file: pdf as Blob})).pipe(
+            map((questionsList) => questionsList.data.map(questionMapper)),
+        );
+    } else {
+        return from(createQuestionsWithTopicCreateQuestionsWithTopicPost(userQuery.profile, userQuery.intent, userQuery.topic)).pipe(
+            map((questionsList) => questionsList.data.map(questionMapper)),
+        );
+    }
 }
+
+const questionMapper = (question: Question): QuestionDto => {
+    return question as QuestionDto;
+  };

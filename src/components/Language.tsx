@@ -18,11 +18,12 @@ const Language: React.FC<LanguageProps> = ({ onSelectLanguage }) => {
 
   return (
     <div>
-      <h2>Choose a programming language to test yourself please:</h2>
-      <ul>
+      <h2 className='text-xl font-bold'>Choose a programming language to test yourself please:</h2>
+      <br />
+      <ul className="space-x-2.5" >
         {languages.map((language, index) => (
-          <li key={index}>
-            <button onClick={() => onSelectLanguage(language)}>
+          <li className='inline' key={index}>
+            <button className="btn btn-lg btn-neutral" onClick={() => onSelectLanguage(language)}>
               {language}
             </button>
           </li>
