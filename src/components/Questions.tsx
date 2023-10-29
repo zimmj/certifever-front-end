@@ -69,7 +69,54 @@ const Questions: React.FC<QuestionsProps> = ({ apiUrl }) => {
     }
   };
 
-  return <div></div>;
+  return (
+    <div>
+      {timer > 0 && !isTimeUp && <p>Timer: {timer} second</p>}
+
+      {questions.length > 0 && currentQuestionIndex < questions.length ? (
+        <div>
+          <h1>Question {currentQuestionIndex + 1}</h1>
+          <p>{questions[currentQuestionIndex].question}</p>
+          <ul>
+            {questions[currentQuestionIndex].options.map((option, index) => (
+              <li key={index}>
+                <button
+                  onClick={() => handleAnswerQuestion(index)}
+                  disabled={isAnswered}
+                >
+                  {option}
+                </button>
+              </li>
+            ))}
+          </ul>
+          {isAnswered && (
+            <div>
+              <p>
+                Correct:{' '}
+                {
+                  questions[currentQuestionIndex].options[
+                    questions[currentQuestionIndex].correct_answer
+                  ]
+                }
+              </p>
+              <button onClick={goToNextQuestion}>Next Question</button>
+            </div>
+          )}
+        </div>
+      ) : (
+        <div>
+          <h1>You have have answred all question</h1>
+          <p>
+            Correct answers:{' '}
+            {userAnswers.filter((answer) => answer === 1).length}
+          </p>
+          <p>
+            Wrong answers: {userAnswers.filter((answer) => answer === 0).length}
+          </p>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default Questions;
