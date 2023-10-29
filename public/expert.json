@@ -1,0 +1,30 @@
+
+[
+{
+  "question": "True or False: In Python, '==' and 'is' operators are used interchangeably to compare two objects.",
+  "options": [
+    "True",
+    "False"
+  ],
+  "correct_answer": 1,
+  "explanation": "False. In Python, '==' is used to compare the values of two objects, while 'is' is used to check if two objects refer to the same memory location."
+},
+{
+  "question": "True or False: In Python, '==' and 'is' operators are used interchangeably to compare two objects.",
+  "options": [
+    "True",
+    "False"
+  ],
+  "correct_answer": 1,
+  "explanation": "False. In Python, '==' is used to compare the values of two objects, while 'is' is used to check if two objects refer to the same memory location."
+},
+{
+  "question": "True or False: In Python, '==' and 'is' operators are used interchangeably to compare two objects.",
+  "options": [
+    "True",
+    "False"
+  ],
+  "correct_answer": 1,
+  "explanation": "False. In Python, '==' is used to compare the values of two objects, while 'is' is used to check if two objects refer to the same memory location."
+}
+]

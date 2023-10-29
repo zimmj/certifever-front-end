@@ -1,0 +1,35 @@
+[
+    {
+        "question": "What is the key difference between Python 2 and Python 3?",
+        "options": [
+          "Python 2 is no longer supported by the Python Software Foundation.",
+          "Python 3 has a different syntax and introduces new features.",
+          "Python 2 is faster than Python 3.",
+          "Python 3 is not backward compatible with Python 2."
+        ],
+        "correct_answer": 1,
+        "explanation": "Python 2 and Python 3 have significant differences in syntax and features. Python 3 was introduced to address some design flaws in Python 2 and to improve the language overall."
+      },
+      {
+        "question": "What is the key difference between Python 2 and Python 3?",
+        "options": [
+          "Python 2 is no longer supported by the Python Software Foundation.",
+          "Python 3 has a different syntax and introduces new features.",
+          "Python 2 is faster than Python 3.",
+          "Python 3 is not backward compatible with Python 2."
+        ],
+        "correct_answer": 1,
+        "explanation": "Python 2 and Python 3 have significant differences in syntax and features. Python 3 was introduced to address some design flaws in Python 2 and to improve the language overall."
+      },
+      {
+        "question": "What is the key difference between Python 2 and Python 3?",
+        "options": [
+          "Python 2 is no longer supported by the Python Software Foundation.",
+          "Python 3 has a different syntax and introduces new features.",
+          "Python 2 is faster than Python 3.",
+          "Python 3 is not backward compatible with Python 2."
+        ],
+        "correct_answer": 1,
+        "explanation": "Python 2 and Python 3 have significant differences in syntax and features. Python 3 was introduced to address some design flaws in Python 2 and to improve the language overall."
+      }
+]
