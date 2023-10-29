@@ -14,40 +14,38 @@
         }
       }
     },
-    "/create_bin_question": {
+    "/create_questions_with_topic": {
       "post": {
-        "summary": "Create Binary Question",
-        "operationId": "create_binary_question_create_bin_question_post",
+        "summary": "Create Questions With Topic",
+        "operationId": "create_questions_with_topic_create_questions_with_topic_post",
         "parameters": [
           {
-            "name": "difficulty",
+            "name": "profile",
             "in": "query",
             "required": true,
-            "schema": { "type": "integer", "title": "Difficulty" }
+            "schema": { "type": "string", "title": "Profile" }
           },
           {
-            "name": "desc",
+            "name": "intent",
             "in": "query",
             "required": true,
-            "schema": { "type": "string", "title": "Desc" }
+            "schema": { "type": "string", "title": "Intent" }
           },
           {
-            "name": "choice_1",
+            "name": "topic",
             "in": "query",
             "required": true,
-            "schema": { "type": "string", "title": "Choice 1" }
-          },
-          {
-            "name": "choice_2",
-            "in": "query",
-            "required": true,
-            "schema": { "type": "string", "title": "Choice 2" }
+            "schema": { "type": "string", "title": "Topic" }
           }
         ],
         "responses": {
           "200": {
             "description": "Successful Response",
-            "content": { "application/json": { "schema": {} } }
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/QuestionsList" }
+              }
+            }
           },
           "422": {
             "description": "Validation Error",
@@ -60,24 +58,110 @@
         }
       }
     },
-    "/get_bin_question": {
-      "get": {
-        "summary": "Get Bin Question",
-        "operationId": "get_bin_question_get_bin_question_get",
+    "/create_questions_with_pdf": {
+      "post": {
+        "summary": "Create Questions With Pdf",
+        "operationId": "create_questions_with_pdf_create_questions_with_pdf_post",
         "parameters": [
           {
-            "name": "id",
+            "name": "profile",
             "in": "query",
             "required": true,
-            "schema": { "type": "integer", "title": "Id" }
+            "schema": { "type": "string", "title": "Profile" }
+          },
+          {
+            "name": "intent",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string", "title": "Intent" }
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_create_questions_with_pdf_create_questions_with_pdf_post"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/BinaryQuestion" }
+                "schema": { "$ref": "#/components/schemas/QuestionsList" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reinforce_on_topics": {
+      "post": {
+        "summary": "Reinforce On Topics",
+        "operationId": "reinforce_on_topics_reinforce_on_topics_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "items": { "type": "string" },
+                "type": "array",
+                "title": "Topics"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/QuestionsList" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reinforce_auto": {
+      "post": {
+        "summary": "Reinforce Auto",
+        "operationId": "reinforce_auto_reinforce_auto_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_reinforce_auto_reinforce_auto_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/QuestionsList" }
               }
             }
           },
@@ -95,16 +179,34 @@
   },
   "components": {
     "schemas": {
-      "BinaryQuestion": {
+      "Body_create_questions_with_pdf_create_questions_with_pdf_post": {
         "properties": {
-          "difficulty": { "type": "integer", "title": "Difficulty" },
-          "desc": { "type": "string", "title": "Desc" },
-          "choice_1": { "type": "string", "title": "Choice 1" },
-          "choice_2": { "type": "string", "title": "Choice 2" }
+          "pdf_file": {
+            "type": "string",
+            "format": "binary",
+            "title": "Pdf File"
+          }
         },
         "type": "object",
-        "required": ["difficulty", "desc", "choice_1", "choice_2"],
-        "title": "BinaryQuestion"
+        "required": ["pdf_file"],
+        "title": "Body_create_questions_with_pdf_create_questions_with_pdf_post"
+      },
+      "Body_reinforce_auto_reinforce_auto_post": {
+        "properties": {
+          "correct_responses": {
+            "items": { "type": "integer" },
+            "type": "array",
+            "title": "Correct Responses"
+          },
+          "incorrect_responses": {
+            "items": { "type": "integer" },
+            "type": "array",
+            "title": "Incorrect Responses"
+          }
+        },
+        "type": "object",
+        "required": ["correct_responses", "incorrect_responses"],
+        "title": "Body_reinforce_auto_reinforce_auto_post"
       },
       "HTTPValidationError": {
         "properties": {
@@ -116,6 +218,18 @@
         },
         "type": "object",
         "title": "HTTPValidationError"
+      },
+      "QuestionsList": {
+        "properties": {
+          "data": {
+            "items": { "type": "object" },
+            "type": "array",
+            "title": "Data"
+          }
+        },
+        "type": "object",
+        "required": ["data"],
+        "title": "QuestionsList"
       },
       "ValidationError": {
         "properties": {

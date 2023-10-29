@@ -2,7 +2,9 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { BinaryQuestion } from '../models/BinaryQuestion';
+import type { Body_create_questions_with_pdf_create_questions_with_pdf_post } from '../models/Body_create_questions_with_pdf_create_questions_with_pdf_post';
+import type { Body_reinforce_auto_reinforce_auto_post } from '../models/Body_reinforce_auto_reinforce_auto_post';
+import type { QuestionsList } from '../models/QuestionsList';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import { OpenAPI } from '../core/OpenAPI';
@@ -23,28 +25,25 @@ export class DefaultService {
     }
 
     /**
-     * Create Binary Question
-     * @param difficulty 
-     * @param desc 
-     * @param choice1 
-     * @param choice2 
-     * @returns any Successful Response
+     * Create Questions With Topic
+     * @param profile 
+     * @param intent 
+     * @param topic 
+     * @returns QuestionsList Successful Response
      * @throws ApiError
      */
-    public static createBinaryQuestionCreateBinQuestionPost(
-difficulty: number,
-desc: string,
-choice1: string,
-choice2: string,
-): CancelablePromise<any> {
+    public static createQuestionsWithTopicCreateQuestionsWithTopicPost(
+profile: string,
+intent: string,
+topic: string,
+): CancelablePromise<QuestionsList> {
         return __request(OpenAPI, {
             method: 'POST',
-            url: '/create_bin_question',
+            url: '/create_questions_with_topic',
             query: {
-                'difficulty': difficulty,
-                'desc': desc,
-                'choice_1': choice1,
-                'choice_2': choice2,
+                'profile': profile,
+                'intent': intent,
+                'topic': topic,
             },
             errors: {
                 422: `Validation Error`,
@@ -53,20 +52,67 @@ choice2: string,
     }
 
     /**
-     * Get Bin Question
-     * @param id 
-     * @returns BinaryQuestion Successful Response
+     * Create Questions With Pdf
+     * @param profile 
+     * @param intent 
+     * @param formData 
+     * @returns QuestionsList Successful Response
      * @throws ApiError
      */
-    public static getBinQuestionGetBinQuestionGet(
-id: number,
-): CancelablePromise<BinaryQuestion> {
+    public static createQuestionsWithPdfCreateQuestionsWithPdfPost(
+profile: string,
+intent: string,
+formData: Body_create_questions_with_pdf_create_questions_with_pdf_post,
+): CancelablePromise<QuestionsList> {
         return __request(OpenAPI, {
-            method: 'GET',
-            url: '/get_bin_question',
+            method: 'POST',
+            url: '/create_questions_with_pdf',
             query: {
-                'id': id,
+                'profile': profile,
+                'intent': intent,
             },
+            formData: formData,
+            mediaType: 'multipart/form-data',
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
+     * Reinforce On Topics
+     * @param requestBody 
+     * @returns QuestionsList Successful Response
+     * @throws ApiError
+     */
+    public static reinforceOnTopicsReinforceOnTopicsPost(
+requestBody: Array<string>,
+): CancelablePromise<QuestionsList> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/reinforce_on_topics',
+            body: requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
+     * Reinforce Auto
+     * @param requestBody 
+     * @returns QuestionsList Successful Response
+     * @throws ApiError
+     */
+    public static reinforceAutoReinforceAutoPost(
+requestBody: Body_reinforce_auto_reinforce_auto_post,
+): CancelablePromise<QuestionsList> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/reinforce_auto',
+            body: requestBody,
+            mediaType: 'application/json',
             errors: {
                 422: `Validation Error`,
             },
