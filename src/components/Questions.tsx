@@ -92,7 +92,7 @@ const Questions: React.FC<QuestionsProps> = ({ apiUrl }) => {
           {isAnswered && (
             <div>
               <p>
-                Correct:{' '}
+                Correct Response is:{' '}
                 {
                   questions[currentQuestionIndex].options[
                     questions[currentQuestionIndex].correct_answer
