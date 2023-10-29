@@ -18,6 +18,7 @@ const Questions: React.FC<QuestionsProps> = ({ apiUrl }) => {
   const [isTimeUp, setIsTimeUp] = useState<boolean>(false);
   const [isAnswered, setIsAnswered] = useState<boolean>(false);
   const [timer, setTimer] = useState<number>(0);
+  const [showResults, setShowResults] = useState<boolean>(false);
 
   useEffect(() => {
     fetch(apiUrl)
@@ -52,8 +53,9 @@ const Questions: React.FC<QuestionsProps> = ({ apiUrl }) => {
     return () => {
       clearInterval(interval);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timer, currentQuestionIndex, questions, isTimeUp]);
+
   const handleAnswerQuestion = (selectedOption: number) => {
     const correctAnswer = questions[currentQuestionIndex].correct_answer;
     setUserAnswers([...userAnswers, selectedOption === correctAnswer ? 1 : 0]);
@@ -65,8 +67,21 @@ const Questions: React.FC<QuestionsProps> = ({ apiUrl }) => {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setIsAnswered(false);
     } else {
-      // Show result
+      setShowResults(true);
     }
+  };
+
+  const renderResults = () => {
+    const correctAnswers = userAnswers.filter((answer) => answer === 1).length;
+    const wrongAnswers = userAnswers.filter((answer) => answer === 0).length;
+
+    return (
+      <div>
+        <h1>You have answered all questions</h1>
+        <p>Correct answers: {correctAnswers}</p>
+        <p>Wrong answers: {wrongAnswers}</p>
+      </div>
+    );
   };
 
   return (
@@ -74,7 +89,7 @@ const Questions: React.FC<QuestionsProps> = ({ apiUrl }) => {
       {timer > 0 && !isTimeUp && <p className='text-2xl font-bold text-right'>Timer: {timer} second</p>}
 
       {questions.length > 0 && currentQuestionIndex < questions.length ? (
-        
+
         <div>
           <br />
           <h1 className='text-xl font-bold'>Question {currentQuestionIndex + 1}</h1>
@@ -121,14 +136,7 @@ const Questions: React.FC<QuestionsProps> = ({ apiUrl }) => {
         </div>
       ) : (
         <div>
-          <h1>You have have answred all question</h1>
-          <p>
-            Correct answers:{' '}
-            {userAnswers.filter((answer) => answer === 1).length}
-          </p>
-          <p>
-            Wrong answers: {userAnswers.filter((answer) => answer === 0).length}
-          </p>
+          {renderResults()}
         </div>
       )}
     </div>
