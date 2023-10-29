@@ -60,6 +60,15 @@ const Questions: React.FC<QuestionsProps> = ({ apiUrl }) => {
     setIsAnswered(true);
   };
 
+  const goToNextQuestion = () => {
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      setIsAnswered(false);
+    } else {
+      // Show result
+    }
+  };
+
   return <div></div>;
 };
 
