@@ -26,12 +26,12 @@ export const QuestionCard: React.FunctionComponent<QuestionCardProps> = ({questi
   }
 
 
-  return (<><div className="card w-96 bg-base-100 shadow-xl">
+  return (<><div className="card w-96 bg-base-100 bg-transparent">
     <div className="card-body">
       <h2 className="card-title">{question.question}</h2>
       <div className="grid">
        {question.options.map((option, index) => (
-          <button className="btn btn-outline btn-primary" key={index} onClick={() => userAnswered(index)}>{option}</button>
+          <button className="btn  btn-neutral my-2" key={index} onClick={() => userAnswered(index)}>{option}</button>
         ))
        }
       </div>
@@ -40,7 +40,7 @@ export const QuestionCard: React.FunctionComponent<QuestionCardProps> = ({questi
   <div>
     {answered && wasCorrect && <div className="alert alert-success m-6">Correct</div>}
     {answered && !wasCorrect && <div className="alert alert-error m-6">{question.explanation}</div>}
-    {answered && !lastQuestion && <button className="btn btn-primary m-6" onClick={onNext}>Next</button>}
+    {answered && !lastQuestion && <button className="btn btn-secondary m-6" onClick={onNext}>Next</button>}
   </div>
   </>
   );

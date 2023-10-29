@@ -75,7 +75,7 @@ export const UserForm: React.FunctionComponent<UserFormProps> = ({onFormSubmit})
         <span className="label-text">You can also upload a pdf file and you will get some questions about the context</span>
       </label>
     <input name='pdf_file' type="file" className="file-input w-full max-w-xs" />
-    <div className='p-10'>
+    <div className='py-10'>
       <button className="btn btn-primary" type='submit'>Submit</button>
     </div>
   </form>

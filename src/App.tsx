@@ -57,7 +57,7 @@ const App: React.FunctionComponent = () => {
       <div className="bg-slate-200 w-full flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
 
 
-        <main className=" md:w-2/3 lg:w-3/4 px-5 py-40">
+        <main className=" md:w-2/3 lg:w-3/4 px-5 py-20">
           <QuizzMaster></QuizzMaster>
 
         </main>
