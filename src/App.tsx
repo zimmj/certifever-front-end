@@ -31,24 +31,37 @@ const App: React.FunctionComponent = () => {
       setApiUrl('https://www.api.org/sda125');
     }
   };
+
+
   return (
 <body data-theme="cmyk" className="mx-20  ">
-      <header className="bg-neutral flex justify-between w-full">
+      <header className="bg-neutral flex justify-between w-full h-32 p-2">
       
       <div className=''>
-        <img src={certifever} alt="Logo Certifever" className='' />
+        <img src={certifever} alt="Logo Certifever" className='h-full' />
         </div>
         
-        <div className='uppercase font-bolid text-white align-middle text-3xl place-self-center'>
+        <div className='uppercase font-bolid text-white align-middle text-3xl place-self-center w-full'>
            Certifever  for ever
         </div>
         <div className=''>
-          <img src={baselhack} alt="HackBasel" className="" />
-        </div> 
+          <img src={baselhack} alt="HackBasel" className="h-full float-right " />
+        </div>  
         
       </header>
       <div className="bg-slate-200 w-full flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
-      {!selectedLanguage ? (
+      
+    
+        <main className=" md:w-2/3 lg:w-3/4 px-5 py-40">
+          <h1 className="text-2xl md:text-4xl">Welcome to Certifever</h1>
+          <p>
+            Certifever help you to learn very quick any content. You can upload
+            a PDF with a topic or you can choice a topic and you will get some
+            questions for learning the topic
+          </p> <br/>
+          <p>
+
+          {!selectedLanguage ? (
         <Language onSelectLanguage={handleLanguageSelect} />
       ) : !selectedDifficulty ? (
         <Difficulty onSelectDifficulty={handleDifficultySelect} />
@@ -59,13 +72,6 @@ const App: React.FunctionComponent = () => {
           <h2>Uploading...</h2>
         </div>
       )}
-    
-        <main className=" md:w-2/3 lg:w-3/4 px-5 py-40">
-          <h1 className="text-2xl md:text-4xl">Welcome to Certifever</h1>
-          <p>
-            Certifever help you to learn very quick any content. You can upload
-            a PDF with a topic or you can choice a topic and you will get some
-            questions for learning the topic
           </p>
         </main>
       </div>
