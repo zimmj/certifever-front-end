@@ -1,6 +1,6 @@
 import { UserQuery } from '../component/user-form';
 import {DefaultService, OpenAPI, Question} from '../gen/openapi'
-import {BehaviorSubject, Observable, from, map} from 'rxjs';
+import {BehaviorSubject, Observable, delay, from, map} from 'rxjs';
 
 const {createQuestionsWithPdfCreateQuestionsWithPdfPost, createQuestionsWithTopicCreateQuestionsWithTopicPost} = DefaultService;
 
@@ -58,7 +58,7 @@ export const createQuestion = (pdf: File | null, userQuery: UserQuery): Observab
         topic: 'Potential impact of NanoScribe',
       },
     ]);
-  return mock.asObservable();
+  return mock.asObservable().pipe(delay(4520));
   if (pdf) {
         return from(createQuestionsWithPdfCreateQuestionsWithPdfPost(userQuery.profile, userQuery.intent, {pdf_file: pdf as Blob})).pipe(
             map((questionsList) => questionsList.data.map(questionMapper)),
