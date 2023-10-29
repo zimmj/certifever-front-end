@@ -16,6 +16,15 @@ const App: React.FC = () => {
 
   const handleDifficultySelect = (difficulty: string) => {
     setSelectedDifficulty(difficulty);
+
+    // difficulty lvl depending on users choice
+    if (difficulty === 'Beginner') {
+      setApiUrl('http://localhost:3000/expert.json');
+    } else if (difficulty === 'Advanced') {
+      setApiUrl('http://localhost:3000/advanced.json');
+    } else if (difficulty === 'Expert') {
+      setApiUrl('https://www.api.org/sda125');
+    }
   };
 
   return <div className="App"></div>;
