@@ -12,26 +12,10 @@ export type QuestionDto = {
   topic: string;
 };
 
-OpenAPI.BASE = 'http://localhost:8000';
+OpenAPI.BASE = 'http://localhost:8080';
 
 export const createQuestion = (pdf: File | null, userQuery: UserQuery): Observable<QuestionDto[]> => {
-  const mock: BehaviorSubject<QuestionDto[]> = new BehaviorSubject<QuestionDto[]>([
-    {
-      question: 'What is the capital of India?',
-      options: ['New Delhi', 'Mumbai', 'Kolkata', 'Chennai'],
-      correct_answer_id: 0,
-      explanation: 'New Delhi is the capital of India',
-      topic: 'Geography',
-    },
-    {
-      question: 'What is the capital of Australia?',
-      options: ['Sydney', 'Melbourne', 'Canberra', 'Perth'],
-      correct_answer_id: 2,
-      explanation: 'Canberra is the capital of Australia',
-      topic: 'Geography',
-    }
-  ])
-  return mock.asObservable();
+
   if (pdf) {
         return from(createQuestionsWithPdfCreateQuestionsWithPdfPost(userQuery.profile, userQuery.intent, {pdf_file: pdf as Blob})).pipe(
             map((questionsList) => questionsList.data.map(questionMapper)),
