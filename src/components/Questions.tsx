@@ -71,16 +71,25 @@ const Questions: React.FC<QuestionsProps> = ({ apiUrl }) => {
 
   return (
     <div>
-      {timer > 0 && !isTimeUp && <p>Timer: {timer} second</p>}
+      {timer > 0 && !isTimeUp && <p className='text-2xl font-bold text-right'>Timer: {timer} second</p>}
 
       {questions.length > 0 && currentQuestionIndex < questions.length ? (
+        
         <div>
-          <h1>Question {currentQuestionIndex + 1}</h1>
-          <p>{questions[currentQuestionIndex].question}</p>
-          <ul>
+          <br />
+          <h1 className='text-xl font-bold'>Question {currentQuestionIndex + 1}</h1>
+          <br />
+          <div className="flex flex-col w-full border-opacity-50">
+            <div className="grid h-20 card bg-base-300 rounded-box place-items-center">{questions[currentQuestionIndex].question}</div>
+          
+        </div>
+        <br />
+          <div className='space-y-2.5'>
+            
+          <ul className="space-x-2.5">
             {questions[currentQuestionIndex].options.map((option, index) => (
-              <li key={index}>
-                <button
+              <li  className='inline ' key={index}>
+                <button className='btn btn-primary'
                   onClick={() => handleAnswerQuestion(index)}
                   disabled={isAnswered}
                 >
@@ -89,17 +98,24 @@ const Questions: React.FC<QuestionsProps> = ({ apiUrl }) => {
               </li>
             ))}
           </ul>
+          </div>
+          <br />
           {isAnswered && (
             <div>
-              <p>
-                Correct Response is:{' '}
+              <div className="flex flex-col w-full border-opacity-50">
+            <div className="grid h-20 card bg-base-300 rounded-box place-items-center">
+
+            Correct Response is:{' '}
                 {
                   questions[currentQuestionIndex].options[
                     questions[currentQuestionIndex].correct_answer
                   ]
                 }
-              </p>
-              <button onClick={goToNextQuestion}>Next Question</button>
+            </div>
+          
+        </div>
+        <br />
+              <button className='btn btn-neutral' onClick={goToNextQuestion}>Next Question</button>
             </div>
           )}
         </div>
