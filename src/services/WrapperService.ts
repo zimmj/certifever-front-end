@@ -1,28 +1,31 @@
+import { UserQuery } from '../component/user-form';
 import {DefaultService, OpenAPI} from '../gen/openapi'
-import {Observable, from, map, tap} from 'rxjs';
+import {Observable, from, map} from 'rxjs';
 
-const {getBinQuestionGetBinQuestionGet} = DefaultService;
+const {createQuestionsWithPdfCreateQuestionsWithPdfPost, createQuestionsWithTopicCreateQuestionsWithTopicPost} = DefaultService;
 
-export type BinaryQuestionDto = {
-    difficulty: number;
-    desc: string;
-    choice_1: string;
-    choice_2: string;
-};
+export type Question = {
+    question: string;
+    answers: string[];
+  };
 
 OpenAPI.BASE = 'http://localhost:8000';
 
-export const getBinQuestionGetBinQuestionGetWrapper = (id: number): Observable<BinaryQuestionDto> => {
-  const cancelable = getBinQuestionGetBinQuestionGet(id);
-  return from(cancelable).pipe(
-    tap(
-      {
-        error: (err) => {
-          cancelable.cancel();
-          console.error(err);
-        }
-      }
-    ),
-    map((res) => res as BinaryQuestionDto)
-  );
+export const createQuestion = (pdf: File | null, userQuery: UserQuery): Observable<Question[]> => {
+    if (pdf) {
+        return from(createQuestionsWithPdfCreateQuestionsWithPdfPost(userQuery.profile, userQuery.intent, {pdf_file: pdf})).pipe(
+            map((questionsList) => questionsList.data.map(questionMapper)),
+        );
+    } else {
+        return from(createQuestionsWithTopicCreateQuestionsWithTopicPost(userQuery.profile, userQuery.intent, userQuery.topic)).pipe(
+            map((questionsList) => questionsList.data.map(questionMapper)),
+        );
+    }
 }
+
+const questionMapper = (question: Record<string, any>): Question => {
+    return {
+      question: question.question,
+      answers: [""],
+    };
+  };

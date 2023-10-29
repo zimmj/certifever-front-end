@@ -10,17 +10,38 @@ import React from 'react';
  * pdf or topic
  **/
 
-interface UserFormProps {
-  onFormSubmit(formData: FormData): void;
+export interface UserFormProps {
+  onFormSubmit(formData: File | null, userQuery: UserQuery): void;
+}
+
+export interface UserQuery {
+  profile: string;
+  intent: string;
+  topic: string;
 }
 
 export const UserForm: React.FunctionComponent<UserFormProps> = ({onFormSubmit}) => {
 
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
-    const formData = new FormData(event.target as HTMLFormElement);
-    console.log(formData);
-    onFormSubmit(formData);
+    const target = event.target as typeof event.target & {
+      Profile: {value: string};
+      intenstion: {value: string};
+      topics: {value: string};
+      pdf_file: {files: File[]};
+    };
+
+    const userQuery: UserQuery = {
+      profile: target.Profile.value,
+      intent: target.intenstion.value,
+      topic: target.topics.value
+    };
+
+    if (target.pdf_file.files.length > 0) {
+      const file = target.pdf_file.files[0]
+       onFormSubmit(file, userQuery);
+    }
+    onFormSubmit(null, userQuery);
   }
 
   return <form onSubmit={handleSubmit}>
@@ -49,7 +70,7 @@ export const UserForm: React.FunctionComponent<UserFormProps> = ({onFormSubmit})
       <option>C#</option>
     </select>
     <div className="divider">or</div>
-    <input name='text-file' type="file" className="file-input w-full max-w-xs" />
+    <input name='pdf_file' type="file" className="file-input w-full max-w-xs" />
     <div className='p-10'>
       <button className="btn btn-primary" type='submit'>Submit</button>
     </div>

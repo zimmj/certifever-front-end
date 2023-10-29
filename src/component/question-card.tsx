@@ -1,8 +1,8 @@
 import React from "react";
-import { BinaryQuestionDto } from "../services/WrapperService";
+import { Question } from "../services/WrapperService";
 
 export interface QuestionCardProps {
-  question: BinaryQuestionDto;
+  question: Question;
   userAnswer: (answer: string) => void;
 }
 

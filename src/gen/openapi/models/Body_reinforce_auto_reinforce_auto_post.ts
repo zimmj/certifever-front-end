@@ -3,9 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type BinaryQuestion = {
-    difficulty: number;
-    desc: string;
-    choice_1: string;
-    choice_2: string;
+export type Body_reinforce_auto_reinforce_auto_post = {
+    correct_responses: Array<number>;
+    incorrect_responses: Array<number>;
 };
