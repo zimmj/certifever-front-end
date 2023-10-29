@@ -27,7 +27,21 @@ const App: React.FC = () => {
     }
   };
 
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      {!selectedLanguage ? (
+        <Language onSelectLanguage={handleLanguageSelect} />
+      ) : !selectedDifficulty ? (
+        <Difficulty onSelectDifficulty={handleDifficultySelect} />
+      ) : apiUrl ? (
+        <Questions apiUrl={apiUrl} />
+      ) : (
+        <div>
+          <h1>Uploading...</h1>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default App;
