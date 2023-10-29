@@ -1,4 +1,5 @@
 {
+
   "openapi": "3.1.0",
   "info": { "title": "FastAPI", "version": "0.1.0" },
   "paths": {
@@ -175,6 +176,44 @@
           }
         }
       }
+    },
+    "/adjust_difficulty": {
+      "post": {
+        "summary": "Adjust Difficulty",
+        "operationId": "adjust_difficulty_adjust_difficulty_post",
+        "parameters": [
+          {
+            "name": "topic",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string", "title": "Topic" }
+          },
+          {
+            "name": "difficulty_adjustment",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "integer", "title": "Difficulty Adjustment" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/QuestionsList" }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -219,10 +258,35 @@
         "type": "object",
         "title": "HTTPValidationError"
       },
+      "Question": {
+        "properties": {
+          "question": { "type": "string", "title": "Question" },
+          "options": {
+            "items": { "type": "string" },
+            "type": "array",
+            "title": "Options"
+          },
+          "correct_answer_id": {
+            "type": "integer",
+            "title": "Correct Answer Id"
+          },
+          "explanation": { "type": "string", "title": "Explanation" },
+          "topic": { "type": "string", "title": "Topic" }
+        },
+        "type": "object",
+        "required": [
+          "question",
+          "options",
+          "correct_answer_id",
+          "explanation",
+          "topic"
+        ],
+        "title": "Question"
+      },
       "QuestionsList": {
         "properties": {
           "data": {
-            "items": { "type": "object" },
+            "items": { "$ref": "#/components/schemas/Question" },
             "type": "array",
             "title": "Data"
           }
