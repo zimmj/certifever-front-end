@@ -28,7 +28,7 @@ const App: React.FunctionComponent = () => {
           <a className="link link-hover">Anurag Grag</a>
           <a className="link link-hover">Liam Hoo</a>
           <a className="link link-hover">Martin Mraz</a>
-          <a className="link link-hover">Ibrahim Kuray</a>
+          <a href='/' className="link link-hover">Ibrahim Kuray</a>
         </nav>
         <nav>
           <header className="footer-title">AI Prompters Team</header>
