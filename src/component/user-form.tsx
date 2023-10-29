@@ -54,7 +54,7 @@ export const UserForm: React.FunctionComponent<UserFormProps> = ({onFormSubmit})
     </div>
     <div className="divider"></div>
     <div className="form-control">
-      <label className="label">
+    <label className="label">
         <span className="label-text">What is your intention</span>
         <span className="label-text-alt">For what do you need the questions</span>
       </label>
@@ -63,13 +63,17 @@ export const UserForm: React.FunctionComponent<UserFormProps> = ({onFormSubmit})
 
     <div className="divider"></div>
     <select name='topics' className="select select-bordered w-full max-w-xs">
-      <option disabled selected>Who shot first?</option>
+      <option disabled selected>Select the programming language!</option>
       <option>React</option>
       <option>Java</option>
       <option>PHP</option>
       <option>C#</option>
     </select>
-    <div className="divider">or</div>
+    <br />
+    <div className="divider text-xl">OR</div>
+    <label className="label">
+        <span className="label-text">You can also upload a pdf file and you will get some questions about the context</span>
+      </label>
     <input name='pdf_file' type="file" className="file-input w-full max-w-xs" />
     <div className='p-10'>
       <button className="btn btn-primary" type='submit'>Submit</button>
