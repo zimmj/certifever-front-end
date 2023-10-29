@@ -2,6 +2,8 @@ import React from 'react';
 import logo from './logo.svg';
 import baselhack from './assests/images/logohack.png';
 import './App.css';
+import { QuestionCard } from './component/question-card';
+import { UserForm } from './component/user-form';
 
 const App: React.FunctionComponent = () => {
   return (
@@ -12,6 +14,7 @@ const App: React.FunctionComponent = () => {
       </header>
 
       <div className="bg-white my-5 w-full flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
+        <UserForm onFormSubmit={(formData) => console.log(formData)}></UserForm>
         <main className=" md:w-2/3 lg:w-3/4 px-5 py-40">
           <h1 className="text-2xl md:text-4xl">Welcome to Certifever</h1>
           <p>
