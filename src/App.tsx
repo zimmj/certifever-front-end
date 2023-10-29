@@ -38,14 +38,18 @@ const App: React.FunctionComponent = () => {
       <header className="bg-neutral flex justify-between w-full h-32 p-2">
       
       <div className=''>
-        <img src={certifever} alt="Logo Certifever" className='h-full' />
-        </div>
+        <a className="link link-hover" href="./">
+           <img src={certifever} alt="Logo Certifever" className='h-full' />
+        </a>
+      </div>
         
         <div className='uppercase font-bolid text-white align-middle text-3xl place-self-center w-full'>
            Certifever  for ever
         </div>
         <div className=''>
-          <img src={baselhack} alt="HackBasel" className="h-full float-right " />
+          <a className="link link-hover" href="https://www.baselhack.ch/" target="_blank" rel="noreferrer">
+            <img src={baselhack} alt="HackBasel" className="h-full float-right " />
+          </a>
         </div>  
         
       </header>
@@ -53,12 +57,6 @@ const App: React.FunctionComponent = () => {
       
     
         <main className=" md:w-2/3 lg:w-3/4 px-5 py-40">
-          <h1 className="text-2xl md:text-4xl">Welcome to Certifever</h1>
-          <p>
-            Certifever help you to learn very quick any content. You can upload
-            a PDF with a topic or you can choice a topic and you will get some
-            questions for learning the topic
-          </p> <br/>
           <p>
 
           {!selectedLanguage ? (
@@ -92,12 +90,12 @@ const App: React.FunctionComponent = () => {
         </nav>
         <nav>
           <header className="footer-title">Created 2023</header>
-          <a className="link link-hover" href="https://www.baselhack.ch/">
+          <a className="link link-hover" href="https://www.baselhack.ch/" target="_blank" rel="noreferrer">
             BaselHack
           </a>
           <a className="link link-hover" href="./">Project Idea of Roland Brand</a>
           <a
-            className="link link-hover"
+            className="link link-hover" target="_blank" rel="noreferrer"
             href="https://github.com/zimmj/certifever-front-end"
           >
             GitHub Reposotory
