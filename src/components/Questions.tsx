@@ -34,6 +34,32 @@ const Questions: React.FC<QuestionsProps> = ({ apiUrl }) => {
       });
   }, [apiUrl]);
 
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+
+    if (timer > 0 && currentQuestionIndex < questions.length && !isTimeUp) {
+      interval = setInterval(() => {
+        if (timer > 0) {
+          setTimer(timer - 1);
+        } else {
+          clearInterval(interval);
+          setIsTimeUp(true);
+          // when time is up, next q
+          goToNextQuestion();
+        }
+      }, 1000);
+    }
+    return () => {
+      clearInterval(interval);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [timer, currentQuestionIndex, questions, isTimeUp]);
+  const handleAnswerQuestion = (selectedOption: number) => {
+    const correctAnswer = questions[currentQuestionIndex].correct_answer;
+    setUserAnswers([...userAnswers, selectedOption === correctAnswer ? 1 : 0]);
+    setIsAnswered(true);
+  };
+
   return <div></div>;
 };
 
