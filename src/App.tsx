@@ -34,7 +34,7 @@ const App: React.FunctionComponent = () => {
 
 
   return (
-<body data-theme="cmyk" className="mx-20  ">
+<body data-theme="cmyk" className="  ">
       <header className="bg-neutral flex justify-between w-full h-32 p-2">
       
       <div className=''>
@@ -96,7 +96,7 @@ const App: React.FunctionComponent = () => {
           <a className="link link-hover" href="./">Project Idea of Roland Brand</a>
           <a
             className="link link-hover" target="_blank" rel="noreferrer"
-            href="https://github.com/zimmj/certifever-front-end"
+            href="https://github.com/zimmj/certifever-ai-prompt"
           >
             GitHub Reposotory
           </a>
