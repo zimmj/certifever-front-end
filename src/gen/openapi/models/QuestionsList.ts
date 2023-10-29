@@ -3,6 +3,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { Question } from './Question';
+
 export type QuestionsList = {
-    data: Array<Record<string, any>>;
+    data: Array<Question>;
 };

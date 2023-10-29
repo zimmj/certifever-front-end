@@ -1,9 +1,9 @@
 import React from "react";
-import { Question, createQuestion } from "../services/WrapperService";
+import { QuestionDto, createQuestion } from "../services/WrapperService";
 import { UserForm, UserQuery } from "./user-form";
 
 interface QuizzMasterState {
-  questions: Question[];
+  questions: QuestionDto[];
   userAnswers: string[];
   score: number;
   questionNumber: number;

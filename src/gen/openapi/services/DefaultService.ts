@@ -119,4 +119,28 @@ requestBody: Body_reinforce_auto_reinforce_auto_post,
         });
     }
 
+    /**
+     * Adjust Difficulty
+     * @param topic 
+     * @param difficultyAdjustment 
+     * @returns QuestionsList Successful Response
+     * @throws ApiError
+     */
+    public static adjustDifficultyAdjustDifficultyPost(
+topic: string,
+difficultyAdjustment: number,
+): CancelablePromise<QuestionsList> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/adjust_difficulty',
+            query: {
+                'topic': topic,
+                'difficulty_adjustment': difficultyAdjustment,
+            },
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
 }
